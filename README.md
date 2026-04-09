@@ -147,7 +147,7 @@ You're back on your host machine. The busybox container is stopped.
 💡 What do the `-it` flags mean?
 - `-i` = Interactive (keep STDIN open)
 - `-t` = Allocate a pseudo-TTY (a terminal)
-- Together they let you interact with the container like a normal shell.
+- Together they let you interact with the container like a normal shell (think of it as options for an "**i**nteractive **t**erminal".
 
 #### Long-Running Containers
 
@@ -403,6 +403,9 @@ docker stop ticker-1 ticker-2 ticker-3
 docker rm ticker-1 ticker-2 ticker-3
 ```
 
+> Further information on filtering criteria can be 
+> found in the [Docker docs](https://docs.docker.com/engine/cli/filter/#reference)
+
 #### Challenge 2: Inspect Container Details
 
 Docker stores a lot of metadata about containers. Let's dig in!
@@ -600,7 +603,7 @@ You're ready to start working with real applications in containers!
 So far we've been using images that others have built (hello-world, busybox, rancher/cowsay).
 Now it's time to build our own! We'll start with something very simple.
 
-We have prepared a file called `Dockerfile_Helloworld`. Let's look at it:
+Create a file called `Dockerfile_Helloworld` with the contents that we've already seen:
 
 ```dockerfile
 FROM alpine:latest
@@ -626,7 +629,7 @@ docker build -t ais-hello-world -f Dockerfile_Helloworld .
 Now run our newly crafted image:
 
 ```bash
-docker run ais-hello-world
+docker run --rm ais-hello-world
 ```
 
 You should see:
@@ -636,7 +639,7 @@ You should see:
 Because we used `ENTRYPOINT` and `CMD`, we can override the message by passing arguments!
 
 ```bash
-docker run ais-hello-world "I am a Docker Master"
+docker run --rm ais-hello-world "I am a Docker Master"
 ```
 
 You should see:
