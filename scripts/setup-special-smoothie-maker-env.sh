@@ -1,0 +1,1 @@
+RUN echo "To get your Docker whale, hout thisloud $(whoami)@$(hostname) NOW!" > /app/EASTER_EGG
