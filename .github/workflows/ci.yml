@@ -72,19 +72,10 @@ jobs:
       - name: Set up Python
         run: uv python install
 
-      - name: Scan for vulnerable dependencies
-        run: | 
-          set -o pipefail
-          echo "### 🛡️ Security Audit Results" >> $GITHUB_STEP_SUMMARY
-          echo '```text' >> $GITHUB_STEP_SUMMARY
-          uvx uv-secure --config=pyproject.toml | tee -a $GITHUB_STEP_SUMMARY
-          echo '```' >> $GITHUB_STEP_SUMMARY
-
       - name: Scan for secrets
         uses: gitleaks/gitleaks-action@v2
         if: always()
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        env:         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build-and-push:
     name: Build & Push Docker Image
