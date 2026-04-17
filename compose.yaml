@@ -7,6 +7,12 @@ services:
       - ./smoothie-database:/recipes
     ports:
       - "8000:8000"
+    healthcheck:
+      test: ["CMD-SHELL", "python -c 'import urllib.request; urllib.request.urlopen(\"http://localhost:8000\")' || exit 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
   
   smoothie-app:
     build:
@@ -14,4 +20,5 @@ services:
       dockerfile: Dockerfile_Clean
     command: http://recipe-server:8000/tropical_paradise.txt
     depends_on:
-      - recipe-server
+      recipe-server:
+        condition: service_healthy
