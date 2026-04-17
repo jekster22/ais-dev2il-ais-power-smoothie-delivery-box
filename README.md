@@ -12,8 +12,6 @@ make sure to use the WSL if you are on Windows.
 
 ## 🐳 Docker Container Playground
 
-## 🐳 Docker Container Playground
-
 Welcome to the Docker Container Playground! Before we can deliver power smoothies in containers, we need to master the art 
 of container management. This exercise will teach you the fundamental Docker commands you'll use every day as a developer.
 
